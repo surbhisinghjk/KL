@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-RUN chmod +x *
+RUN chmod +x bgmi
 
 # Make sure users.txt has write permissions (optional step, sometimes needed)
 RUN touch users.txt && chmod 777 users.txt
