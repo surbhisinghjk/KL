@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-RUN chmod +x bgmi
-
 # Set the command to run your Python script
-RUN python m.py
+CMD ["chmod +x *"]
+
+CMD ["python", "m.py"]
