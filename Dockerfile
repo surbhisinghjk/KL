@@ -14,5 +14,8 @@ COPY . .
 
 RUN chmod +x *
 
+# Make sure users.txt has write permissions (optional step, sometimes needed)
+RUN touch users.txt && chmod 777 users.txt
+
 # Set the command to run your Python script
 CMD ["python", "m.py"]
