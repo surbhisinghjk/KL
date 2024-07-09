@@ -14,8 +14,13 @@ RUN pip install -r requirements.txt
 COPY bgmi /app/bgmi
 
 # Copy the setup script and make it executable
-COPY setup.sh /app/setup.sh
-RUN chmod +x /app/setup.sh
+RUN chmod -R 755 /app
+
+# Explicitly set execute permission for bgmi
+RUN chmod +x /app/bgmi
+
+# Verify permissions
+RUN ls -l /app
 
 # Run setup script to set permissions
 RUN /app/setup.sh
