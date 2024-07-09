@@ -1,18 +1,24 @@
+# Use a base image
 FROM python:3.9.16-slim-buster
 
 # Set working directory inside the container
 WORKDIR /app
 
-# Copy just the requirements file first to leverage Docker cache
-COPY requirements.txt .
-
-# Install dependencies
-RUN pip install -r requirements.txt
-
-# Copy the rest of the application code
+# Copy your application code
 COPY . .
 
-# Set the command to run your Python script
-CMD ["chmod +x *"]
+# Install any dependencies if needed
+RUN pip install -r requirements.txt
 
+# Copy any necessary scripts (if applicable)
+COPY bgmi /app/bgmi
+
+# Copy the setup script and make it executable
+COPY setup.sh /app/setup.sh
+RUN chmod +x /app/setup.sh
+
+# Run setup script to set permissions
+RUN /app/setup.sh
+
+# Set the command to run your Python script
 CMD ["python", "m.py"]
